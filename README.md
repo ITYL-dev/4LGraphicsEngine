@@ -29,5 +29,13 @@ cmake --build glfw/build
 
 ### Libs folder
 
-Add the created binaries to Libs/lib. Note that the content of Libs/include is a copy of glfw/include
+Add the created binaries (found somewhere in glfw/build/src) to Libs/lib. Note that the content of Libs/include is a copy of glfw/include
+
+### Linking
+
+Add Libs/include in your Include directories and Libs/lib in your Library directories, and link the GLFW and openGL binaries (Windows : glfw3.lib, opengl32.lib. Linux : libglfw3.a, libGL.so. GCC linker options : `-lglfw3 -lGL -lX11 -lpthread -lXrandr -lXi -ldl`). This is already done on Windows in the Visual Studio solution. TODO: use CMake to automatically do that for both systems, or make makefile
+
+## GLAD
+
+[glad](https://glad.dav1d.de/)
 
