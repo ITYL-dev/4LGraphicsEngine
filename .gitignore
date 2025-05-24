@@ -1,3 +1,8 @@
+# GLSL validator binaries
+glslang-master-windows-x64-Release/
+
+## C++ gitignore :
+
 # Prerequisites
 *.d
 

@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BA00B72B-CA3D-449E-BF06-369D86D645E9}|Engine\\Engine.vcxproj|C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{BA00B72B-CA3D-449E-BF06-369D86D645E9}|Engine\\Engine.vcxproj|solutionrelative:Engine\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{BA00B72B-CA3D-449E-BF06-369D86D645E9}|Engine\\Engine.vcxproj|C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BA00B72B-CA3D-449E-BF06-369D86D645E9}|Engine\\Engine.vcxproj|solutionrelative:Engine\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,24 +14,25 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
-              "DocumentMoniker": "C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\main.cpp",
-              "RelativeDocumentMoniker": "Engine\\main.cpp",
-              "ToolTip": "C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\main.cpp",
-              "RelativeToolTip": "Engine\\main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAXAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\main.cpp",
+              "RelativeDocumentMoniker": "Engine\\src\\main.cpp",
+              "ToolTip": "C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\main.cpp",
+              "RelativeToolTip": "Engine\\src\\main.cpp",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABsAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-22T21:57:11.46Z",
+              "WhenOpened": "2025-05-24T16:12:11.07Z",
+              "IsPinned": true,
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }
