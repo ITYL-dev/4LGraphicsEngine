@@ -14,18 +14,22 @@ void processInput(GLFWwindow* window)
 
 
 // render operations
-void render(const unsigned int shaderProgramId, const unsigned int VertexArrayObjectId)
+void render(const unsigned int shaderProgramId, const GLuint VAOs[])
 {
     // clear the canvas
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    // select the shader program and bind the VAO
+    // select the shader program
     glUseProgram(shaderProgramId);
-    glBindVertexArray(VertexArrayObjectId);
 
-    // draw
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    // first triangle
+    glBindVertexArray(VAOs[0]);
+    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+
+    // second triangle
+    glBindVertexArray(VAOs[1]);
+    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 }
 
 
@@ -75,7 +79,7 @@ int main() {
     // create the vertex shader and load its code 
     std::string vertexShaderStr{ readFileToString("src/shaders/triangle.vert") };
     const char* vertexShaderSrc{ vertexShaderStr.c_str() };
-    unsigned int vertexShaderId{ glCreateShader(GL_VERTEX_SHADER) };
+    GLuint vertexShaderId{ glCreateShader(GL_VERTEX_SHADER) };
     glShaderSource(vertexShaderId, 1, &vertexShaderSrc, NULL);
 
     // compile the vertex shader
@@ -92,7 +96,7 @@ int main() {
     // create the fragment shader and load its code 
     std::string fragmentShaderStr{ readFileToString("src/shaders/triangle.frag") };
     const char* fragmentShaderSrc{ fragmentShaderStr.c_str() };
-    unsigned int fragmentShaderId{ glCreateShader(GL_FRAGMENT_SHADER) };
+    GLuint fragmentShaderId{ glCreateShader(GL_FRAGMENT_SHADER) };
     glShaderSource(fragmentShaderId, 1, &fragmentShaderSrc, NULL);
 
     // compile the fragment shader
@@ -105,7 +109,7 @@ int main() {
     }
 
     // linking the shaders into a programm
-    unsigned int shaderProgramId{ glCreateProgram() };
+    GLuint shaderProgramId{ glCreateProgram() };
     glAttachShader(shaderProgramId, vertexShaderId);
     glAttachShader(shaderProgramId, fragmentShaderId);
     glLinkProgram(shaderProgramId);
@@ -123,35 +127,54 @@ int main() {
 
     /* DATA */
 
-    float vertices[] = {
-     0.5f,  0.5f, 0.0f,  // top right
-     0.5f, -0.5f, 0.0f,  // bottom right
-    -0.5f, -0.5f, 0.0f,  // bottom left
-    -0.5f,  0.5f, 0.0f   // top left 
+    // first triangle
+    GLuint indices[] = { 0, 1, 2 };
+
+    // first triangle
+    GLfloat vertices1[] = {
+        -0.9f, -0.5f, 0.0f,  // left 
+        -0.0f, -0.5f, 0.0f,  // right
+        -0.45f, 0.5f, 0.0f,  // top
     };
-    unsigned int indices[] = {  // note that we start from 0!
-        0, 1, 3,   // first triangle
-        1, 2, 3    // second triangle
+    // second triangle
+    GLfloat vertices2[] = {
+        0.0f, -0.5f, 0.0f,  // left
+        0.9f, -0.5f, 0.0f,  // right
+        0.45f, 0.5f, 0.0f   // top 
     };
 
-    // create the VBA, VAO and EBO
-    unsigned int VertexBufferObjectId,  VertexArrayObjectId, ElementBuffetObjectId;
-    glGenVertexArrays(1, &VertexArrayObjectId);
-    glGenBuffers(1, &VertexBufferObjectId);
-    glGenBuffers(1, &ElementBuffetObjectId);
+    // create arrays : VertexBufferObjectIds (VBOs), VertexArrayObjectIds (VAOs), ElementBuffetObjectIds (EBOs)
+    GLuint VBOs[2], VAOs[2], EBOs[2];
+    glGenVertexArrays(2, VAOs);
+    glGenBuffers(2, VBOs);
+    glGenBuffers(2, EBOs);
 
     // bind the VAO first ...
-    glBindVertexArray(VertexBufferObjectId);
+    glBindVertexArray(VAOs[0]);
 
     //... then bind and set vertex buffer(s) ...
-    glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObjectId);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ElementBuffetObjectId);
+    glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices1), vertices1, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBOs[0]);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // ... and then configure vertex attributes(s)
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+
+    // bind the VAO first ...
+    glBindVertexArray(VAOs[1]);
+
+    //... then bind and set vertex buffer(s) ...
+    glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices2), vertices2, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBOs[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    // ... and then configure vertex attributes(s)
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    
 
     /* END DATA */
 
@@ -163,7 +186,7 @@ int main() {
         processInput(window);
 
         // render operations
-        render(shaderProgramId, VertexArrayObjectId);
+        render(shaderProgramId, VAOs);
 
         // check and call events and swap the buffers
         glfwSwapBuffers(window);
