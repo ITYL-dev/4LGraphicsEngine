@@ -16,7 +16,7 @@ void processInput(GLFWwindow* window)
 // render operations
 void render(const GLuint shaderProgramIds[], const GLuint VAOs[])
 {
-    // clear the canvas
+    // clear the screen
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -136,6 +136,7 @@ int main() {
         glGetProgramInfoLog(shaderProgramIds[0], 512, NULL, infoLog);
         std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
     }
+
     // linking the shaders into a programm
     shaderProgramIds[1] = glCreateProgram();
     glAttachShader(shaderProgramIds[1], vertexShaderId);
@@ -147,7 +148,6 @@ int main() {
         std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
     }
 
-
     // delete the shaders
     glDeleteShader(vertexShaderId);
     glDeleteShader(fragmentShaderIds[0]);
@@ -157,7 +157,6 @@ int main() {
 
     /* DATA */
 
-    // first triangle
     GLuint indices[] = { 0, 1, 2 };
 
     // first triangle
@@ -173,7 +172,8 @@ int main() {
         0.45f, 0.5f, 0.0f   // top 
     };
 
-    // create arrays : VertexBufferObjectIds (VBOs), VertexArrayObjectIds (VAOs), ElementBuffetObjectIds (EBOs)
+    // create arrays : VertexBufferObjectIds (VBOs), VertexArrayObjectIds (VAOs), 
+    // and ElementBuffetObjectIds (EBOs)
     GLuint VBOs[2], VAOs[2], EBOs[2];
     glGenVertexArrays(2, VAOs);
     glGenBuffers(2, VBOs);
