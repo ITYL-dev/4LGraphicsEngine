@@ -28,6 +28,9 @@ void render(const GLuint shaderProgramIds[], const GLuint VAOs[])
     // second triangle
     glUseProgram(shaderProgramIds[1]);
     glBindVertexArray(VAOs[1]);
+    GLfloat cyanValue{ (sin(static_cast<GLfloat>(glfwGetTime())) / 2.0f) + 0.5f };
+    int vertexColorLocation{ glGetUniformLocation(shaderProgramIds[1], "triangleColor") };
+    glUniform4f(vertexColorLocation, 0.0f, cyanValue, cyanValue, 1.0f);
     glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 }
 
@@ -161,15 +164,17 @@ int main() {
 
     // first triangle
     GLfloat vertices1[] = {
-        -0.9f, -0.5f, 0.0f,  // left 
-        -0.0f, -0.5f, 0.0f,  // right
-        -0.45f, 0.5f, 0.0f,  // top
+        // positions          // colors
+        0.0f,   -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
+        -0.9f,  -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
+        -0.45f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top 
     };
     // second triangle
     GLfloat vertices2[] = {
-        0.0f, -0.5f, 0.0f,  // left
-        0.9f, -0.5f, 0.0f,  // right
-        0.45f, 0.5f, 0.0f   // top 
+        // positions         // colors
+        0.0f,  -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
+        0.9f,  -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
+        0.45f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top 
     };
 
     // create arrays : VertexBufferObjectIds (VBOs), VertexArrayObjectIds (VAOs), 
@@ -189,8 +194,10 @@ int main() {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // ... and then configure vertex attributes(s)
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void*)0);
     glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
+    glEnableVertexAttribArray(1);
 
     // bind the VAO first ...
     glBindVertexArray(VAOs[1]);
@@ -202,8 +209,10 @@ int main() {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // ... and then configure vertex attributes(s)
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void*)0);
     glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
+    glEnableVertexAttribArray(1);
     
 
     /* END DATA */
