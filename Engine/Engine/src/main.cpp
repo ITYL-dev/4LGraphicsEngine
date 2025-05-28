@@ -1,8 +1,11 @@
 #include <iostream>
-#include <string>
+#include <vector>
+
 #include <glad/glad.h> 
 #include <GLFW/glfw3.h>
+
 #include "utils.h"
+#include "shaders/shader.h"
 
 // handle the keyboard inputs
 void processInput(GLFWwindow* window)
@@ -14,23 +17,22 @@ void processInput(GLFWwindow* window)
 
 
 // render operations
-void render(const GLuint shaderProgramIds[], const GLuint VAOs[])
+void render(const std::vector<Shader>& shaderPrograms, const GLuint VAOs[])
 {
     // clear the screen
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
     // first triangle
-    glUseProgram(shaderProgramIds[0]);
+    shaderPrograms[0].use();
     glBindVertexArray(VAOs[0]);
     glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 
     // second triangle
-    glUseProgram(shaderProgramIds[1]);
+    shaderPrograms[1].use();
     glBindVertexArray(VAOs[1]);
     GLfloat cyanValue{ (sin(static_cast<GLfloat>(glfwGetTime())) / 2.0f) + 0.5f };
-    int vertexColorLocation{ glGetUniformLocation(shaderProgramIds[1], "triangleColor") };
-    glUniform4f(vertexColorLocation, 0.0f, cyanValue, cyanValue, 1.0f);
+    shaderPrograms[1].setFloat("cyanValue", cyanValue);
     glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 }
 
@@ -78,83 +80,9 @@ int main() {
 
     /* SHADER CODE */
 
-    // create the vertex shader and load its code 
-    std::string vertexShaderStr{ readFileToString("src/shaders/triangle.vert") };
-    const char* vertexShaderSrc{ vertexShaderStr.c_str() };
-    GLuint vertexShaderId{ glCreateShader(GL_VERTEX_SHADER) };
-    glShaderSource(vertexShaderId, 1, &vertexShaderSrc, NULL);
-
-    // compile the vertex shader
-    glCompileShader(vertexShaderId);
-    int  success;
-    char infoLog[512];
-    glGetShaderiv(vertexShaderId, GL_COMPILE_STATUS, &success);
-    if (!success)
-    {
-        glGetShaderInfoLog(vertexShaderId, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-    }
-
-    GLuint fragmentShaderIds[2];
-
-    // create the fragment shader and load its code 
-    std::string fragmentShaderStr1{ readFileToString("src/shaders/triangle1.frag") };
-    const char* fragmentShaderSrc1{ fragmentShaderStr1.c_str() };
-    fragmentShaderIds[0] = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShaderIds[0], 1, &fragmentShaderSrc1, NULL);
-
-    // compile the fragment shader
-    glCompileShader(fragmentShaderIds[0]);
-    glGetShaderiv(fragmentShaderIds[0], GL_COMPILE_STATUS, &success);
-    if (!success)
-    {
-        glGetShaderInfoLog(fragmentShaderIds[0], 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-    }
-
-    // create the fragment shader and load its code 
-    std::string fragmentShaderStr2{ readFileToString("src/shaders/triangle2.frag") };
-    const char* fragmentShaderSrc2{ fragmentShaderStr2.c_str() };
-    fragmentShaderIds[1] = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShaderIds[1], 1, &fragmentShaderSrc2, NULL);
-
-    // compile the fragment shader
-    glCompileShader(fragmentShaderIds[1]);
-    glGetShaderiv(fragmentShaderIds[1], GL_COMPILE_STATUS, &success);
-    if (!success)
-    {
-        glGetShaderInfoLog(fragmentShaderIds[1], 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-    }
-
-    GLuint shaderProgramIds[2];
-
-    // linking the shaders into a programm
-    shaderProgramIds[0] = glCreateProgram();
-    glAttachShader(shaderProgramIds[0], vertexShaderId);
-    glAttachShader(shaderProgramIds[0], fragmentShaderIds[0]);
-    glLinkProgram(shaderProgramIds[0]);
-    glGetProgramiv(shaderProgramIds[0], GL_LINK_STATUS, &success);
-    if (!success) {
-        glGetProgramInfoLog(shaderProgramIds[0], 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-    }
-
-    // linking the shaders into a programm
-    shaderProgramIds[1] = glCreateProgram();
-    glAttachShader(shaderProgramIds[1], vertexShaderId);
-    glAttachShader(shaderProgramIds[1], fragmentShaderIds[1]);
-    glLinkProgram(shaderProgramIds[1]);
-    glGetProgramiv(shaderProgramIds[1], GL_LINK_STATUS, &success);
-    if (!success) {
-        glGetProgramInfoLog(shaderProgramIds[1], 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-    }
-
-    // delete the shaders
-    glDeleteShader(vertexShaderId);
-    glDeleteShader(fragmentShaderIds[0]);
-    glDeleteShader(fragmentShaderIds[1]);
+    std::vector<Shader> shaderPrograms;
+    shaderPrograms.emplace_back(Shader("src/shaders/triangle.vert", "src/shaders/triangle1.frag"));
+    shaderPrograms.emplace_back(Shader("src/shaders/triangle.vert", "src/shaders/triangle2.frag"));
 
     /* END SHADER CODE */
 
@@ -225,7 +153,7 @@ int main() {
         processInput(window);
 
         // render operations
-        render(shaderProgramIds, VAOs);
+        render(shaderPrograms, VAOs);
 
         // check and call events and swap the buffers
         glfwSwapBuffers(window);

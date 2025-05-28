@@ -1,10 +1,10 @@
 #version 460 core
 
-uniform vec4 triangleColor;
+uniform float cyanValue;
 
 out vec4 FragColor;
 
 void main()
 {
-    FragColor = triangleColor;
+    FragColor = vec4(0, cyanValue, cyanValue, 1);
 } 

@@ -6,15 +6,15 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     glViewport(0, 0, width, height);
 }
 
-// function to read a shader code from a file and get the result in a string
+// function to read a text from a file and get the result in a string
 std::string readFileToString(const std::string& filePath)
 {
     std::ifstream file(filePath);
     if (!file)
-        std::cout << "Failed to open shader file: " << filePath << std::endl;
+        std::cout << "Failed to open text file: " << filePath << std::endl;
     std::stringstream buffer;
-    buffer << file.rdbuf(); // Read entire file into buffer
-    return buffer.str();    // Return as string
+    buffer << file.rdbuf();
+    return buffer.str();
 }
 
 // callback function to show a message on error in debug output

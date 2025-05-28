@@ -1,9 +1,11 @@
-#pragma once
+#ifndef UTILS_H
+#define UTILS_H
 
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
+
 #include <glad/glad.h> 
 #include <GLFW/glfw3.h>
 
@@ -19,3 +21,5 @@ void APIENTRY glDebugOutput(GLenum source,
     const char* message,
     const void* userParam
 );
+
+#endif

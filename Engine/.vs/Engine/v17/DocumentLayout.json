@@ -7,6 +7,14 @@
       "RelativeMoniker": "D:0:0:{BA00B72B-CA3D-449E-BF06-369D86D645E9}|Engine\\Engine.vcxproj|solutionrelative:Engine\\src\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{BA00B72B-CA3D-449E-BF06-369D86D645E9}|Engine\\Engine.vcxproj|C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\shaders\\shader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BA00B72B-CA3D-449E-BF06-369D86D645E9}|Engine\\Engine.vcxproj|solutionrelative:Engine\\src\\shaders\\shader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA00B72B-CA3D-449E-BF06-369D86D645E9}|Engine\\Engine.vcxproj|C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\shaders\\shader.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{BA00B72B-CA3D-449E-BF06-369D86D645E9}|Engine\\Engine.vcxproj|solutionrelative:Engine\\src\\shaders\\shader.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BA00B72B-CA3D-449E-BF06-369D86D645E9}|Engine\\Engine.vcxproj|C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\utils.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{BA00B72B-CA3D-449E-BF06-369D86D645E9}|Engine\\Engine.vcxproj|solutionrelative:Engine\\src\\utils.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -32,10 +40,36 @@
               "RelativeDocumentMoniker": "Engine\\src\\main.cpp",
               "ToolTip": "C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\main.cpp",
               "RelativeToolTip": "Engine\\src\\main.cpp",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACAAAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACIAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-05-24T16:12:11.07Z",
               "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "shader.cpp",
+              "DocumentMoniker": "C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\shaders\\shader.cpp",
+              "RelativeDocumentMoniker": "Engine\\src\\shaders\\shader.cpp",
+              "ToolTip": "C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\shaders\\shader.cpp",
+              "RelativeToolTip": "Engine\\src\\shaders\\shader.cpp",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAAFIAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-28T20:22:24.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "shader.h",
+              "DocumentMoniker": "C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\shaders\\shader.h",
+              "RelativeDocumentMoniker": "Engine\\src\\shaders\\shader.h",
+              "ToolTip": "C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\shaders\\shader.h",
+              "RelativeToolTip": "Engine\\src\\shaders\\shader.h",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-28T20:02:08.837Z",
               "EditorCaption": ""
             },
             {
@@ -44,26 +78,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "utils.h",
               "DocumentMoniker": "C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\utils.h",
               "RelativeDocumentMoniker": "Engine\\src\\utils.h",
               "ToolTip": "C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\utils.h",
               "RelativeToolTip": "Engine\\src\\utils.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-05-25T12:11:36.695Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "utils.cpp",
               "DocumentMoniker": "C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\utils.cpp",
               "RelativeDocumentMoniker": "Engine\\src\\utils.cpp",
               "ToolTip": "C:\\Users\\Msi\\Documents\\GitHub\\4LGraphicsEngine\\Engine\\Engine\\src\\utils.cpp",
               "RelativeToolTip": "Engine\\src\\utils.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-05-24T22:55:11.049Z",
               "EditorCaption": ""
